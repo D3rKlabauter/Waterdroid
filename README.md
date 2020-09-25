@@ -3,5 +3,9 @@
 
 A University-Projekt with focus on low-tech solutions for automatic watering - fully self contained.
 
-Work in progress:
+Platform: Arduino Nano
+
+Work in progress!
+
+Todo:
 - building a prototype
