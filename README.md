@@ -1,7 +1,7 @@
 
 #Waterdroid
 
-A University-Projekt with focus on low-tech solutions for automatic watering - fully self contained.
+A university project with focus on low-tech solutions for automatic watering - fully self contained.
 
 Platform: Arduino Nano
 
