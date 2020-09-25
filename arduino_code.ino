@@ -1,5 +1,4 @@
-
-// const überhaupt notwendig, wenn es einfach nicht geändert wird??
+// Arduino UNO watering system
 
 const int soilMoisturePin = A0;  //why int??
 const int water_tank = 2    ;   //why int??
