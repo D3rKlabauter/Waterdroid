@@ -28,7 +28,7 @@ void setup()
 void loop()
 {
   //Reset wateredToday variable if it's a new day
-  if (!(now.day()==rtc.day())) { 
+  if (!(time.day()==rtc.day())) { 
     wateredToday = false;
   }
   
