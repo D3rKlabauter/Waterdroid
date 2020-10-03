@@ -10,7 +10,7 @@ const int watering_thrashhold = 50;
 const int dry = 697;  // value for dry sensor
 const int wet = 339; // value for wet sensor
 
-bool watering = false;
+//bool watering = false;
 bool watered_today = false;
 
 void setup()
@@ -42,7 +42,7 @@ void loop()
     digitalWrite(water_tank, HIGH);
     delay(watering_time);
     digitalWrite(water_tank, LOW);
-    watering = true;
+    wateredToday = true;
     time = rtc.now
   }
 
