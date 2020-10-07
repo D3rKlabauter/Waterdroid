@@ -8,7 +8,7 @@ GravityRtc rtc;     //RTC Initialization
 
 const int soilMoisturePin = A0;  //why int??
 const int water_tank = 2    ;   //why int??
-const int Volt = 12;
+const int powersupply = 12; // just for testing
 
 float soilMoistureRaw = 0; //Raw analog input of soil moisture sensor (volts)
 int percentageHumidity = 0;
@@ -26,7 +26,9 @@ void setup()
 {
   Serial.begin(9600);
   pinMode(water_tank,OUTPUT);
-  pinMode(Volt,OUTPUT);
+  pinMode(powersupply,OUTPUT); // just for testing
+  
+  digitalWrite(Volt, HIGH); // just for testing
 
   rtc.setup();
   //Set the RTC time automatically: Calibrate RTC time by your computer time
