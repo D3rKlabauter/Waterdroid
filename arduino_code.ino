@@ -1,5 +1,11 @@
 // Arduino UNO watering system
 
+
+#include "GravityRtc.h"
+#include "Wire.h"
+
+GravityRtc rtc;     //RTC Initialization
+
 const int soilMoisturePin = A0;  //why int??
 const int water_tank = 2    ;   //why int??
 float soilMoistureRaw = 0; //Raw analog input of soil moisture sensor (volts)
@@ -17,12 +23,11 @@ void setup()
 { 
   Serial.begin(9600);
   
-  if (! rtc.initialized()) {
-    Serial.println("RTC is NOT running!");
-    // following line sets the RTC to the date & time this sketch was compiled
-    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-    Serial.print(now())
-  time = rtc.now
+  rtc.setup();
+//Set the RTC time automatically: Calibrate RTC time by your computer time
+  rtc.adjustRtc(F(__DATE__), F(__TIME__));
+  
+  //time = rtc.now
 }
 
 void loop()
@@ -37,7 +42,7 @@ void loop()
 
   percentageHumidity = map(soilMoistureRaw, wet, dry, 100, 0); // More info: https://www.arduino.cc/reference/en/language/functions/math/map/
 
-  if ((percentageHumidity < watering_thrashhold) and (watered_today = false) and (rtc.hour() > 8) and (rtc.hour() < 10){
+  if ((percentageHumidity < watering_thrashhold) and (watered_today = false){
 
     digitalWrite(water_tank, HIGH);
     delay(watering_time);
@@ -51,7 +56,6 @@ void loop()
 
     Serial.print("watered today = ");
     Serial.print(watered_today); // possible?
-    Serial.print(time);
     delay(250)
   }
 
