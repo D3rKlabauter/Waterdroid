@@ -8,8 +8,11 @@ GravityRtc rtc;     //RTC Initialization
 
 const int soilMoisturePin = A0;  //why int??
 const int water_tank = 2    ;   //why int??
+const int Volt = 12;
+
 float soilMoistureRaw = 0; //Raw analog input of soil moisture sensor (volts)
 int percentageHumidity = 0;
+
 const int watering_time = 5000; //measured in ms
 const int watering_thrashhold = 50;
 
@@ -20,20 +23,22 @@ const int wet = 339; // value for wet sensor
 bool watered_today = false;
 
 void setup()
-{ 
+{
   Serial.begin(9600);
-  
+  pinMode(water_tank,OUTPUT);
+  pinMode(Volt,OUTPUT);
+
   rtc.setup();
-//Set the RTC time automatically: Calibrate RTC time by your computer time
+  //Set the RTC time automatically: Calibrate RTC time by your computer time
   rtc.adjustRtc(F(__DATE__), F(__TIME__));
   
-  //time = rtc.now
+  water_clock = rtc.now
 }
 
 void loop()
 {
   //Reset wateredToday variable if it's a new day
-  if (!(time.day()==rtc.day())) { 
+  if (!(water_clock.day()==rtc.day())) { 
     wateredToday = false;
   }
   
@@ -48,7 +53,7 @@ void loop()
     delay(watering_time);
     digitalWrite(water_tank, LOW);
     wateredToday = true;
-    time = rtc.now
+    water_clock = rtc.now;
   }
 
   else {
