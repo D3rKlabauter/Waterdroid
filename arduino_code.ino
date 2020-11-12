@@ -6,14 +6,14 @@
 
 GravityRtc rtc;     //RTC Initialization
 
-const int soilMoisturePin = A0;  //why int??
-const int water_tank = 2    ;   //why int??
+const int soilMoisturePin = A0;
+const int water_tank = 2    ;   
 const int powersupply = 12; // just for testing
 
-float soilMoistureRaw = 0; //Raw analog input of soil moisture sensor (volts)
+float soilMoistureRaw = 0; // Raw analog input of soil moisture sensor (volts)
 int percentageHumidity = 0;
 
-const int watering_time = 5000; //measured in ms
+const int watering_time = 5000; // measured in ms
 const int watering_thrashhold = 50;
 
 const int dry = 697;  // value for dry sensor
@@ -28,7 +28,7 @@ void setup()
   pinMode(water_tank,OUTPUT);
   pinMode(powersupply,OUTPUT); // just for testing
   
-  digitalWrite(Volt, HIGH); // just for testing
+  digitalWrite(powersupply, HIGH); // just for testing
 
   rtc.setup();
   //Set the RTC time automatically: Calibrate RTC time by your computer time
@@ -49,7 +49,7 @@ void loop()
 
   percentageHumidity = map(soilMoistureRaw, wet, dry, 100, 0); // More info: https://www.arduino.cc/reference/en/language/functions/math/map/
 
-  if ((percentageHumidity < watering_thrashhold) and (watered_today = false)){
+  if (percentageHumidity < watering_thrashhold) { //and (watered_today = false))
 
     digitalWrite(water_tank, HIGH);
     delay(watering_time);
@@ -62,7 +62,7 @@ void loop()
     
 
     Serial.print("watered today = ");
-    Serial.print(watered_today); // possible?
+    Serial.print(watered_today); // returns 0 for false
     delay(250)
   }
 
@@ -72,5 +72,5 @@ void loop()
   Serial.print(percentageHumidity);
   Serial.println("%");  //difference between print and println
   
-  delay(250);
+  delay(5000); // takes more time
 }
