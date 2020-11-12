@@ -49,7 +49,7 @@ void loop()
 
   percentageHumidity = map(soilMoistureRaw, wet, dry, 100, 0); // More info: https://www.arduino.cc/reference/en/language/functions/math/map/
 
-  if ((percentageHumidity < watering_thrashhold) and (watered_today = false){
+  if ((percentageHumidity < watering_thrashhold) and (watered_today = false)){
 
     digitalWrite(water_tank, HIGH);
     delay(watering_time);
